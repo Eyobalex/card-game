@@ -1,0 +1,159 @@
+html{
+  width: 100%;
+}
+
+.app{
+  background-image: url(./assets/background.jpg);
+  // background-repeat: no-repeat;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  // overflow: hidden;
+
+  .app-header{
+    background: url('./assets/header.PNG');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 28%;
+    width: 100%;
+    position: absolute;
+    
+    top: 0;
+  }
+
+  .playing-area{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 2;
+
+    .app__container{
+      display: flex;
+      flex-direction: column;
+  
+      .p-text{
+        margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    margin-top: 6px;
+    color: white;
+        font-size: 5rem;
+
+        .winner{
+          color: gold
+        }
+      }
+  
+      .app__bet-placement{
+  
+        border: 3px solid white;
+        width: 100px;
+        height: 100px;
+        margin: 20px;
+        border-radius: 50%;
+        
+      }
+      
+      .app__card-placement{
+        height: 200px;
+        width: 200px;
+        margin-left: 20px;
+        border: 2px solid white;
+        display: flex;
+        flex-direction: row;
+  
+        // position: relative;
+        // align-items: ;
+  
+        .dealer{
+          height: 200px;
+          width: 100px;
+          margin: 10px;
+        }
+      }
+  
+    }
+
+  }
+
+}
+
+
+
+.text-box {
+  margin-left: 44vw;
+  margin-top: 10vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: absolute;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}
