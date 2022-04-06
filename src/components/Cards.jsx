@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { CardContext } from '../contexts/CardContext';
-// import Card from './Card/Card';
 import './Cards.scss'
 import CardBack from './Cards/CardBack';
 import CardFront from './Cards/CardFront';
@@ -8,28 +7,13 @@ import 'animate.css';
 
 const Cards = ({card}) => {
 
-
-  // console.log('not workking', card);
   
   const {flipped, setFlipped} = useContext(CardContext);
-  
-  
-  // const [flipped, setFlipped] = useState(false);
-
 
   return (
-    <div className={`app__cards front`} onDoubleClick={() => setFlipped(ps => !ps)}>
-        {/* {flipped.toString()} */}
-
+    <div className={`app__cards front`} onClick={() => setFlipped(ps => !ps)}>
         {flipped ? <CardFront card={card}/> : <CardBack />}
-
-
-
     </div>
-
-    // <div className="app__cards">
-    //   {flipped ? <CardFront card={card} /> : <CardBack />}
-    // </div>
   )
 }
 

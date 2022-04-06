@@ -11,10 +11,7 @@ const dealerCard = Card.getRandomCard();
 
 const App = () => {
   const {flipped} = useContext(CardContext);
-
-  // const [winner, setWinner] = useState("white");
   const [gameEnd, setGameEnd] = useState(false);
-
   const [winners, setwinners] = useState([]);
 
   const players = [
@@ -28,20 +25,13 @@ const App = () => {
 
   useEffect(() => {
 
-    if (gameEnd && winners.length == 0) {
+    if (gameEnd && winners.length === 0) {
       alert("There are no winners at this round");
     }
-      
-  }, [gameEnd])
-  
 
-  // const winners = [];
-
-  // console.log(winners)
+  }, [gameEnd, winners.length])
 
   const checkWinner = () => {
-
-    // e.preventDefault();
     players.map((player, i) => {
       const high =
         cards[player.card[0]].value > cards[player.card[1]].value
@@ -51,79 +41,48 @@ const App = () => {
         cards[player.card[0]].value < cards[player.card[1]].value
           ? cards[player.card[0]].value
           : cards[player.card[1]].value;
-      // const high = player.card[0].value > player.card[1].value ? player.card[0].value :player.card[1].value;
-      // const low = player.card[0].value < player.card[1].value ? player.card[0].value :player.card[1].value;
-
       if (dealerCard.value > low && dealerCard.value < high) {
-        // winners.push(player);
         setwinners((ps) => [...ps, player]);
-
-        // console.log("first")
-        // setWinner('gold');
-
-        // console.log("yes", high, dealerCard.value, low);
       }
-      // else{
 
-      //   console.log("no", high, dealerCard.value, low);
-      // }
-
-      // console.log("first", winners)
+      // return;
     });
-
-    // console.log('no winner', winners)
-
-    // if( winners.length <= 0 ){
-    //   //  alert(winners.length, "No winners found in this round")
-    //   }
-    // return winners;
-
     setGameEnd(true);
   };
 
-  // useEffect(() =>{
-
-  //   // console.log("useeffect", winners)
-
-  //   checkWinner();
-
-  // }, [winners])
 
   return (
       <div className="app">
-        <div className="app-header"></div>
-
-        {/* {console.log("dealerCard", JSON.stringify(dealerCard))} */}
+        {/* <div className="app-header"></div> */}
 
         <div className="playing-area">
           <div className="app__card-placement dealer">
             <DealerCard card={dealerCard} />
           </div>
 
-          {/* {console.log("playr", players)} */}
+            {players.map((player) => (
+              <div className={`app__container`} key={player.num}>
+                <div
+                  className="app__bet-placement"
+                  style={{
+                    backgroundColor:
+                      winners.filter((x) => x.num === player.num).length > 0
+                        ? "gold"
+                        : "",
+                  }}
+                >
+                  {/* {console.log("ins", )} */}
+                  <p className="p-text">{player.num}</p>
+                </div>
 
-          {players.map((player) => (
-            <div className={`app__container`} key={player.num}>
-              <div
-                className="app__bet-placement"
-                style={{
-                  backgroundColor:
-                    winners.filter((x) => x.num == player.num).length > 0
-                      ? "gold"
-                      : "",
-                }}
-              >
-                {/* {console.log("ins", )} */}
-                <p className="p-text">{player.num}</p>
+                <div className="app__card-placement">
+                  <Cards card={cards[player.card[0]]} />
+                  <Cards card={cards[player.card[1]]} />
+                </div>
               </div>
+            ))}
 
-              <div className="app__card-placement">
-                <Cards card={cards[player.card[0]]} />
-                <Cards card={cards[player.card[1]]} />
-              </div>
-            </div>
-          ))}
-        </div>
+          </div>
 
                 {flipped && (
                     <div className="text-box">
@@ -131,10 +90,7 @@ const App = () => {
                         Show winners
                       </a>
 
-                      
-                      {/* <button className="show-winner"onClick={() => setFlipped(ps => !ps)}>show winner</button> */}
                     </div>
-
                 )}
 
                 <div className="text-box">
@@ -142,23 +98,6 @@ const App = () => {
                         Refresh game 
                       </a>
                 </div>
-
-        {/* <div className="winners">
-
-            {(checkWinner().length === 0) ? "there are no winners " : (
-              players.map(player => (
-                (checkWinner().includes(player)) && <p>{player.num} wins</p>
-              ))
-            )} 
-          </div> */}
-
-        {/* {winners.length > 0 && (
-          <div>
-            {winners.map((player) => (
-              <p> player {player.num} have won </p>
-            ))}
-          </div>
-        )} */}
       </div>
   );
 };

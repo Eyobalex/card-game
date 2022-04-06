@@ -4,15 +4,10 @@ export default class Card {
         this.value = value;
         this.displayName = displayName;
         this.symbol = symbol;
-        // this.color = 'black'
     }
     
     
     nextCard= () => {
-        
-        // if( this.value === 12) {
-        //     return new Card(1, "A", this.symbol);
-        // } 
         const next = this.value + 1;
         
         switch (next) {
@@ -22,8 +17,6 @@ export default class Card {
             case 12: return this;
             default: break;
         }
-        
-        
         return new Card(next, next.toString(), this.symbol);
     }
     prevCard= () => {
@@ -38,18 +31,14 @@ export default class Card {
             case 12: return new Card(11, "Q", this.symbol);
             default: break;
         }
-        
-        
         return new Card(next, next.toString(), this.symbol);
     }
     
     
     static getRandomCard()  {
         const types = ['&spades;', '&clubs;', '&hearts;', '&diams;'];
-        const val = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        const val = Math.floor(Math.random() * (11 - 2 + 1)) + 2;
         const typval =  Math.floor(Math.random() * (3  + 1)) ;
-
-        // console.log(typval)
         return new Card(val,val.toString(), types[typval])
 
     }
@@ -57,6 +46,7 @@ export default class Card {
 
     static getRandomCards(ammount) {
         const cards = [];
+        // console.log("card",(cards.filter(card => card.value === newCard.value)).length) 
         for (let i = 0; i <ammount; i++) {
             cards.push(Card.getRandomCard());   
         }
@@ -66,50 +56,29 @@ export default class Card {
 
 
     getColor = () => {
-
-        // console.log('getcolor', this.symbol == '&spades;' || this.symbole == '&clubs;');
-
         if(this.symbol === '&spades;') return 'black'
         else if(this.symbol === '&clubs;') return 'black'
         else return "red"
-        // return( (this.symbol == '&spades;' ?  'black' : ( this.symbole == '&clubs;') ? 'black' : 'red') );
     }
 
-    // displaySymol = () => {
-
-
-        
-
-    // }
-
-
-
-    
-    display = () =>{
-        
-        try {
-            
-            return `${this.value},${this.displayName},${this.symbol}`
-        } catch (error) {
-            console.log(error)
-        }
+    displaySymbol = () => {
+            switch (this.symbol) {
+              case "&diams;":
+                return (  <span className="rank">&diams;</span>)
+              case "&hearts;":
+                return (<span className="rank">&hearts;</span>)
+              case "&clubs;":
+                return (<span className="rank">&clubs;</span>)
+              case "&spades;":
+                return (<span className="rank">&spades;</span>)
+              default:
+                return (<span className="rank">&spades;</span>)
+            }
+          }
     }
 
-  }
 
 
 
-//   const c1 = new Card(1, "A", "Arrow");
-//   const c2 = new Card(12, "K","Diamond");
 
-//   const c3 = c2.nextCard();
-
-//   const c4 = c3.prevCard();
-const c5 = Card.getRandomCard();
-// //   console.log(c1.display(), c2.display());
-
-// const c6 = Card.getRandomCards(12);
-// console.log(c6.length)  
-
-
-// // Card.getRandomCards(5)
+    Card.getRandomCards(10)
