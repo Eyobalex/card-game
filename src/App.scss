@@ -18,15 +18,28 @@ html{
   // overflow: hidden;
   
   
-
+  
   .playing-area{
-
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
     z-index: 2;
     top: 0;
     
+    #card-placement-1{
+      margin-top: 100px;
+    }
+    #card-placement-2{
+      margin-top: 50px;
+    }
+    #card-placement-5{
+      margin-top: 50px;
+    }
+    #card-placement-6{
+      margin-top: 100px;
+    }
+
     .app__container{
       display: flex;
       flex-direction: column;
@@ -70,6 +83,8 @@ html{
           width: 100px;
           margin: 10px;
         }
+
+
       }
   
     }

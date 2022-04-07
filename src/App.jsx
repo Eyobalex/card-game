@@ -61,9 +61,10 @@ const App = () => {
           </div>
 
             {players.map((player) => (
-              <div className={`app__container`} key={player.num}>
+              <div className={`app__container`}  key={player.num}>
                 <div
                   className="app__bet-placement"
+                  id={`card-placement-${player.num}`}
                   style={{
                     backgroundColor:
                       winners.filter((x) => x.num === player.num).length > 0
@@ -75,7 +76,8 @@ const App = () => {
                   <p className="p-text">{player.num}</p>
                 </div>
 
-                <div className="app__card-placement">
+                  {/* <div className="semi-circle"></div> */}
+                <div className="app__card-placement" >
                   <Cards card={cards[player.card[0]]} />
                   <Cards card={cards[player.card[1]]} />
                 </div>
